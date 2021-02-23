@@ -31,6 +31,7 @@ for i in range(1, 581):    #1,581, 总页数 https://detail.zol.com.cn/cell_phon
 
 res_list = []
 for url in link_list:
+    print url
     response = urllib2.urlopen(url)
     page = response.read()
     soup = BeautifulSoup(page, 'html.parser')
@@ -52,7 +53,7 @@ for url in link_list:
                 break
             else:
                 if tr.find('th') is not None:
-                    key = tr.find('th').get_text()
+                    key = tr.find('th').get_text().strip()
                     spans = tr.find_all('span')
                     value = spans[-1].string
                     if value == None:
