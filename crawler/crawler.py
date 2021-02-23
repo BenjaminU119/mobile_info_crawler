@@ -55,7 +55,11 @@ for url in link_list:
                 if tr.find('th') is not None:
                     key = tr.find('th').get_text().strip()
                     spans = tr.find_all('span')
-                    value = spans[-1].string
+                    value = None
+                    if key == "CPU型号":
+                        value = str(spans[0].get_text()).replace("手机性能排行","").split("更多")[0].strip(">")
+                    else:
+                        value = spans[-1].get_text()
                     if value == None:
                         value = ''
                         temp = spans[-1].stripped_strings
